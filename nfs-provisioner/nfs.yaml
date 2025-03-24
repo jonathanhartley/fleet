@@ -1,0 +1,45 @@
+namespace: nfs-provisioner
+helm:
+  chart: https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner/releases/download/nfs-subdir-external-provisioner-4.0.18/nfs-subdir-external-provisioner-4.0.18.tgz
+targetCustomizations:
+- name: dev
+  helm:
+    values:
+      nfs:
+        server: 192.168.3.250
+        path: /volume1/kubernetes
+        mountOptions:
+        volumeName: nfs-subdir-external-provisioner-root
+        reclaimPolicy: Retain
+      storageClass:
+        create: true
+        defaultClass: false
+        name: nfs
+        allowVolumeExpansion: true
+        reclaimPolicy: Delete
+        accessModes: ReadWriteMany
+        volumeBindingMode: Immediate
+  clusterSelector:
+    matchLabels:
+      env: dev
+
+- name: prod
+  helm:
+    values:
+      nfs:
+        server: 192.168.3.250
+        path: /volume1/kubernetes
+        mountOptions:
+        volumeName: nfs-subdir-external-provisioner-root
+        reclaimPolicy: Retain
+      storageClass:
+        create: true
+        defaultClass: false
+        name: nfs
+        allowVolumeExpansion: true
+        reclaimPolicy: Delete
+        accessModes: ReadWriteMany
+        volumeBindingMode: Immediate
+  clusterSelector:
+    matchLabels:
+      env: prod
