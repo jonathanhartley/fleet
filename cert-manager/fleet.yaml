@@ -1,0 +1,92 @@
+helm:
+  chart: https://charts.jetstack.io/charts/cert-manager-v1.17.1.tgz
+targetCustomizations:
+- name: dev
+  helm:
+    values:
+      global:
+        imagePullSecrets: []
+        rbac:
+          create: true
+          aggregateClusterRoles: true
+        leaderElection:
+          namespace: "kube-system"
+      installCRDs: true
+      crds:
+        enabled: true
+        keep: true
+      replicaCount: 1
+      podDisruptionBudget:
+        enabled: true
+      namespace: "cert-manager"
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      containerSecurityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        readOnlyRootFilesystem: true
+      nodeSelector:
+        kubernetes.io/os: linux
+      prometheus:
+        enabled: true
+        servicemonitor:
+          enabled: true
+          prometheusInstance: default
+          targetPort: 9402
+          path: /metrics
+          interval: 60s
+          scrapeTimeout: 30s
+        podDisruptionBudget:
+          enabled: true
+  clusterSelector:
+    matchLabels:
+      env: dev
+
+- name: prod
+  helm:
+    values:
+      global:
+        imagePullSecrets: []
+        rbac:
+          create: true
+          aggregateClusterRoles: true
+        leaderElection:
+          namespace: "kube-system"
+      installCRDs: true
+      crds:
+        enabled: true
+        keep: true
+      replicaCount: 1
+      podDisruptionBudget:
+        enabled: true
+      namespace: "cert-manager"
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      containerSecurityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        readOnlyRootFilesystem: true
+      nodeSelector:
+        kubernetes.io/os: linux
+      prometheus:
+        enabled: true
+        servicemonitor:
+          enabled: true
+          prometheusInstance: default
+          targetPort: 9402
+          path: /metrics
+          interval: 60s
+          scrapeTimeout: 30s
+        podDisruptionBudget:
+          enabled: true
+  clusterSelector:
+    matchLabels:
+      env: prod
