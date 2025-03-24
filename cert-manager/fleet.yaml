@@ -11,7 +11,6 @@ targetCustomizations:
           aggregateClusterRoles: true
         leaderElection:
           namespace: "kube-system"
-      installCRDs: true
       crds:
         enabled: true
         keep: true
@@ -54,7 +53,6 @@ targetCustomizations:
           aggregateClusterRoles: true
         leaderElection:
           namespace: "kube-system"
-      installCRDs: true
       crds:
         enabled: true
         keep: true
