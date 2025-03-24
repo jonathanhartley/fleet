@@ -1,6 +1,7 @@
+namespace: cert-manager
 helm:
   chart: https://charts.jetstack.io/charts/cert-manager-v1.17.1.tgz
-  namespace: cert-manager
+
 targetCustomizations:
 - name: dev
   helm:
