@@ -40,8 +40,6 @@ targetCustomizations:
           path: /metrics
           interval: 60s
           scrapeTimeout: 30s
-        podDisruptionBudget:
-          enabled: true
   clusterSelector:
     matchLabels:
       env: dev
@@ -85,8 +83,6 @@ targetCustomizations:
           path: /metrics
           interval: 60s
           scrapeTimeout: 30s
-        podDisruptionBudget:
-          enabled: true
   clusterSelector:
     matchLabels:
       env: prod
