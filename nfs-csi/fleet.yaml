@@ -1,0 +1,51 @@
+defaultNamespace: nfs-csi
+helm:
+  chart: https://helm.familyhartley.com/csi-driver-nfs-4.11.0.tgz
+targetCustomizations:
+- name: dev
+  helm:
+    values:
+      storageClass:
+        create: true
+          name: nfs
+          annotations:
+            storageclass.kubernetes.io/is-default-class: "true"
+          parameters:
+            server: 192.168.3.250
+            share: /volume1/kubernetes
+            subDir:
+            mountPermissions: "0"
+            csi.storage.k8s.io/provisioner-secret is only needed for providing mountOptions in DeleteVolume
+            csi.storage.k8s.io/provisioner-secret-name: "mount-options"
+            csi.storage.k8s.io/provisioner-secret-namespace: "default"
+          reclaimPolicy: Delete
+          volumeBindingMode: Immediate
+          mountOptions:
+            - nfsvers=4.1 
+  clusterSelector:
+    matchLabels:
+      env: dev
+
+- name: prod
+  helm:
+    values:
+      storageClass:
+        create: true
+          name: nfs
+          annotations:
+            storageclass.kubernetes.io/is-default-class: "true"
+          parameters:
+            server: 192.168.3.250
+            share: /volume1/kubernetes
+            subDir:
+            mountPermissions: "0"
+            csi.storage.k8s.io/provisioner-secret is only needed for providing mountOptions in DeleteVolume
+            csi.storage.k8s.io/provisioner-secret-name: "mount-options"
+            csi.storage.k8s.io/provisioner-secret-namespace: "default"
+          reclaimPolicy: Delete
+          volumeBindingMode: Immediate
+          mountOptions:
+            - nfsvers=4.1 
+  clusterSelector:
+    matchLabels:
+      env: prod
