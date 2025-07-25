@@ -1,6 +1,7 @@
 defaultNamespace: nfs-csi
 helm:
   chart: https://helm.familyhartley.com/csi-driver-nfs-4.11.0.tgz
+
 targetCustomizations:
 - name: dev
   helm:
@@ -11,7 +12,6 @@ targetCustomizations:
           parameters:
             server: 192.168.3.250
             share: /volume1/kubernetes
-            subDir:
             mountPermissions: "0"
           reclaimPolicy: Delete
           volumeBindingMode: Immediate
@@ -30,7 +30,6 @@ targetCustomizations:
           parameters:
             server: 192.168.3.250
             share: /volume1/kubernetes
-            subDir:
             mountPermissions: "0"
           reclaimPolicy: Delete
           volumeBindingMode: Immediate
