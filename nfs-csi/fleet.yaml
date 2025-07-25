@@ -13,9 +13,6 @@ targetCustomizations:
             share: /volume1/kubernetes
             subDir:
             mountPermissions: "0"
-            csi.storage.k8s.io/provisioner-secret is only needed for providing mountOptions in DeleteVolume
-            csi.storage.k8s.io/provisioner-secret-name: "mount-options"
-            csi.storage.k8s.io/provisioner-secret-namespace: "default"
           reclaimPolicy: Delete
           volumeBindingMode: Immediate
           mountOptions:
@@ -35,9 +32,6 @@ targetCustomizations:
             share: /volume1/kubernetes
             subDir:
             mountPermissions: "0"
-            csi.storage.k8s.io/provisioner-secret is only needed for providing mountOptions in DeleteVolume
-            csi.storage.k8s.io/provisioner-secret-name: "mount-options"
-            csi.storage.k8s.io/provisioner-secret-namespace: "default"
           reclaimPolicy: Delete
           volumeBindingMode: Immediate
           mountOptions:
