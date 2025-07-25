@@ -8,15 +8,14 @@ targetCustomizations:
     values:
       storageClass:
         create: true
-          name: nfs
-          parameters:
-            server: 192.168.3.250
-            share: /volume1/kubernetes
-            mountPermissions: "0"
-          reclaimPolicy: Delete
-          volumeBindingMode: Immediate
-          mountOptions:
-            - nfsvers=4.1 
+        name: nfs
+        parameters:
+          server: 192.168.3.250
+          share: /volume1/kubernetes
+        reclaimPolicy: Delete
+        volumeBindingMode: Immediate
+        mountOptions:
+          - nfsvers=4.1 
   clusterSelector:
     matchLabels:
       env: dev
@@ -26,15 +25,14 @@ targetCustomizations:
     values:
       storageClass:
         create: true
-          name: nfs
-          parameters:
-            server: 192.168.3.250
-            share: /volume1/kubernetes
-            mountPermissions: "0"
-          reclaimPolicy: Delete
-          volumeBindingMode: Immediate
-          mountOptions:
-            - nfsvers=4.1 
+        name: nfs
+        parameters:
+          server: 192.168.3.250
+          share: /volume1/kubernetes
+        reclaimPolicy: Delete
+        volumeBindingMode: Immediate
+        mountOptions:
+          - nfsvers=4.1 
   clusterSelector:
     matchLabels:
       env: prod
