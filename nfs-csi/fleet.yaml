@@ -32,7 +32,7 @@ targetCustomizations:
         reclaimPolicy: Delete
         volumeBindingMode: Immediate
         mountOptions:
-          - nfsvers=4.1 
+          - nfsvers=4
   clusterSelector:
     matchLabels:
       env: prod
