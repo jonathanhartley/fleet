@@ -11,9 +11,9 @@ targetCustomizations:
         domain: argo-cd.familyhartley.com
         revisionHistoryLimit: 3
         hostAliases:
-        - ip: 192.168.3.250
-          hostnames:
-          - helm.familyhartlry.com
+          - ip: 192.168.3.250
+            hostnames:
+            - helm.familyhartlry.com
       ## Argo Configs
       configs:
           exec.enabled: true
