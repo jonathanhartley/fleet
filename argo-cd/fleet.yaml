@@ -1,6 +1,6 @@
 defaultNamespace: argo-cd
 helm:
-  chart: https://helm.familyhartlry.com/argo-cd-8.2.2.tgz
+  chart: https://helm.familyhartley.com/argo-cd-8.2.2.tgz
 
 targetCustomizations:
 - name: dev
