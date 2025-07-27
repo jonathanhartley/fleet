@@ -128,6 +128,7 @@ targetCustomizations:
           annotations:
             nignx.ingress.kubernetes.io/force-ssl-redirect: "false"
             nginx.ingress.kubernetes.io/ssl-redirect: "false"
+            nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 
           # -- Defines which ingress controller will implement the resource
           ingressClassName: "nginx"
