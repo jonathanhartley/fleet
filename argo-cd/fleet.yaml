@@ -1,10 +1,11 @@
-defaultNamespace: argo-cd
+defaultNamespace: argocd
 helm:
   chart: https://helm.familyhartley.com/argo-cd-8.2.2.tgz
 
 targetCustomizations:
 - name: dev
   helm:
+    releaseName: argocd
     values:
       nameOverride: argocd
       global:
