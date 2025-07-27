@@ -16,7 +16,7 @@ targetCustomizations:
         #    - helm.familyhartlry.com
       ## Argo Configs
       params:
-        server.insecure: true
+        server.insecure: false
       configs:
         cm:
           exec.enabled: true
