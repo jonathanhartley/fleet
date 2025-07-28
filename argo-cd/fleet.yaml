@@ -48,6 +48,7 @@ targetCustomizations:
           private-helm-repo:
             url: https://helm.familyhartley,com
             name: familyhartley
+            project: "*"
             type: helm
 
       controller:
