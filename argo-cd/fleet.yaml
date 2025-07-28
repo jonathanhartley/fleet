@@ -12,10 +12,10 @@ targetCustomizations:
       global:
         domain: argocd.familyhartley.com
         revisionHistoryLimit: 3
-        hostAliases: []
-        #  - ip: 192.168.3.250
-        #    hostnames:
-        #    - helm.familyhartlry.com
+        hostAliases:
+          - ip: 192.168.3.250
+            hostnames:
+            - helm.familyhartlry.com
       ## Argo Configs
       params:
         server.insecure: false
@@ -41,6 +41,7 @@ targetCustomizations:
             gitlab.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsj2bNKTBSpIYDEGk9KxsGh3mySTRgMtXL583qmBpzeQ+jqCMRgBqB98u3z++J1sKlXHWfM9dyhSevkMwSbhoR8XIq/U0tCNyokEi/ueaBMCvbcTHhO7FcwzY92WK4Yt0aGROY5qX2UKSeOvuP4D6TPqKF1onrSzH9bx9XUf2lEdWT/ia1NEKjunUqu1xOB/StKDHMoX4/OKyIzuS0q/T1zOATthvasJFoPrAjkohTyaDUz2LN5JoH839hViyEG82yB+MjcFV5MU3N1l1QL3cVUCh93xSaua1N85qivl+siMkPGbO5xR/En4iEY6K2XPASUEMaieWVNTRCtJ4S8H+9
             ssh.dev.azure.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC7Hr1oTWqNqOlzGJOfGJ4NakVyIzf1rXYd4d7wo6jBlkLvCA4odBlL0mDUyZ0/QUfTTqeu+tm22gOsv+VrVTMk6vwRU75gY/y9ut5Mb3bR5BV58dKXyq9A9UeB5Cakehn5Zgm6x1mKoVyf+FFn26iYqXJRgzIZZcZ5V6hrE0Qg39kZm4az48o0AUbf6Sp4SLdvnuMa2sVNwHBboS7EJkm57XQPVU3/QpyNLHbWDdzwtrlS+ez30S3AdYhLKEOxAG8weOnyrtLJAUen9mTkol8oII1edf7mWWbWVf0nBmly21+nZcmCTISQBtdcyPaEno7fFQMDD26/s0lfKob4Kw8H
             vs-ssh.visualstudio.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC7Hr1oTWqNqOlzGJOfGJ4NakVyIzf1rXYd4d7wo6jBlkLvCA4odBlL0mDUyZ0/QUfTTqeu+tm22gOsv+VrVTMk6vwRU75gY/y9ut5Mb3bR5BV58dKXyq9A9UeB5Cakehn5Zgm6x1mKoVyf+FFn26iYqXJRgzIZZcZ5V6hrE0Qg39kZm4az48o0AUbf6Sp4SLdvnuMa2sVNwHBboS7EJkm57XQPVU3/QpyNLHbWDdzwtrlS+ez30S3AdYhLKEOxAG8weOnyrtLJAUen9mTkol8oII1edf7mWWbWVf0nBmly21+nZcmCTISQBtdcyPaEno7fFQMDD26/s0lfKob4Kw8H
+        
         secret:
           createSecret: true
 
@@ -50,6 +51,32 @@ targetCustomizations:
             name: familyhartley
             project: "*"
             type: helm
+
+      extraObjects:
+        - apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: config-map-helm-replace
+          data:
+            helm: |-
+              #!/bin/bash
+              
+              HELM_BIN=${HELM_BIN:-helm}
+              
+              new_args=()
+              template_found=false
+              
+              for arg in "$@"; do
+                if [[ "$arg" == "template" ]]; then
+                  template_found=true
+                  new_args+=("$arg")
+                elif $template_found && [[ "${#new_args[@]}" -eq 1 ]]; then
+                  new_args+=("--dry-run=server" "$arg")
+                  template_found=false
+                else
+                  new_args+=("$arg")
+                fi
+              done
 
       controller:
         name: application-controller
@@ -176,6 +203,28 @@ targetCustomizations:
           serviceMonitor:
             enabled: true
             interval: 20s
+        # fix for lookup
+        #env:
+        #  - name: HELM_BIN
+        #    value: /usr/local/bin/helm
+        #volumeMounts:
+        #  - name: helm-replace
+        #    mountPath: /usr/local/sbin/helm
+        #    subPath: helm
+        #volumes:
+        #  - name: helm-replace
+        #    configMap:
+        #      name: config-map-helm-replace
+        #      defaultMode: 0777
+        #rbac:
+        #  - apiGroups:
+        #    - "*"
+        #    resources:
+        #    - "*"
+        #    verbs:
+        #    - get
+        #    - list
+        #    - watch
 
       applicationSet:
         name: applicationset-controller
