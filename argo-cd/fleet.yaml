@@ -1,12 +1,14 @@
-defaultNamespace: argo-cd
+defaultNamespace: argocd
 helm:
-  chart: https://helm.familyhartley.com/argo-cd-8.2.2.tgz
+  chart: https://helm.familyhartley.com
+  chart: ./argo-cd
+  version: 8.2.2
+  releaseName: argocd
 
 targetCustomizations:
 - name: dev
   helm:
     values:
-      nameOverride: argocd
       global:
         domain: argocd.familyhartley.com
         revisionHistoryLimit: 3
@@ -43,6 +45,12 @@ targetCustomizations:
         secret:
           createSecret: true
 
+        repositories:
+          private-helm-repo:
+            url: https://helm.familyhartley,com
+            name: familyhartley
+            type: helm
+
       controller:
         name: application-controller
         replicas: 1
@@ -58,10 +66,9 @@ targetCustomizations:
           enabled: true
           scrapeTimeout: "19s"
           applicationLabels:
-            # -- Enables additional labels in argocd_app_labels metric
             enabled: true
-            # -- Additional labels
-            labels: []
+            labels:
+              - targetRevision
 
           serviceMonitor:
             enabled: true
