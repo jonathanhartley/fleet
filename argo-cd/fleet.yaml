@@ -157,7 +157,8 @@ targetCustomizations:
 
           # -- The list of additional hostnames to be covered by ingress record
           # @default -- `[]` (See [values.yaml])
-          extraHosts: []
+          extraHosts:
+            - name: argocd.familyhartley.com
 
 
       repoServer:
