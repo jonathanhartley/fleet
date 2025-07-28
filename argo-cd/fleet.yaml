@@ -1,7 +1,7 @@
 defaultNamespace: argocd
 helm:
-  chart: https://helm.familyhartley.com
-  chart: ./argo-cd
+  repo: https://helm.familyhartley.com
+  chart: argo-cd
   version: 8.2.2
   releaseName: argocd
 
