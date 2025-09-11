@@ -2,7 +2,7 @@ defaultNamespace: argocd
 helm:
   repo: https://helm.familyhartley.com
   chart: argo-cd
-  version: 8.3.0
+  version: 8.3.6
   releaseName: argocd
 
 targetCustomizations:
@@ -15,7 +15,7 @@ targetCustomizations:
         hostAliases:
           - ip: 192.168.3.250
             hostnames:
-            - helm.familyhartlry.com
+            - helm.familyhartley.com
       ## Argo Configs
       params:
         server.insecure: false
