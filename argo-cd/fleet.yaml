@@ -225,6 +225,15 @@ targetCustomizations:
         #    - get
         #    - list
         #    - watch
+        copyutil:
+          # -- Resource limits and requests for the repo server copyutil initContainer
+          resources: {}
+          #  limits:
+          #    cpu: 100m
+          #    memory: 128Mi
+          #  requests:
+          #    cpu: 50m
+          #    memory: 64Mi
 
       applicationSet:
         name: applicationset-controller
