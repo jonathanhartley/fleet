@@ -1,6 +1,6 @@
 defaultNamespace: cert-manager
 helm:
-  chart: https://charts.jetstack.io/charts/cert-manager-v1.17.1.tgz
+  chart: https://charts.jetstack.io/charts/cert-manager-v1.19.1.tgz
 
 targetCustomizations:
 - name: dev
