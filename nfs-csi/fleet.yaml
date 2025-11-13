@@ -1,6 +1,6 @@
 defaultNamespace: nfs-csi
 helm:
-  chart: https://helm.familyhartley.com/csi-driver-nfs-4.11.0.tgz
+  chart: https://helm.familyhartley.com/csi-driver-nfs-4.12.1.tgz
 
 targetCustomizations:
 - name: dev
