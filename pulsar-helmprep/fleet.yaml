@@ -6,7 +6,7 @@ targetCustomizations:
     repo: https://helm.familyhartley.com
     chart: pulsar-helmprep
     version: 0.0.10
-    releaseName: pulsar-helmprep
+    releaseName: pulsar-1a-helmprep
     values:
       image:
         repository: docker.familyhartley.com/pulsar/pulsar-helmprep
