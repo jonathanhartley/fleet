@@ -6,7 +6,7 @@ dependsOn:
 targetCustomizations:
 - name: dev
   helm:
-    repo: https://helm.familyhartley.com
+    repo: oci://docker.familyhartley.com/charts
     chart: pulsar
     version: 4.4.0
     releaseName: pulsar-1a
