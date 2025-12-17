@@ -1,7 +1,7 @@
 defaultNamespace: pulsar
 dependsOn: 
-  - fleet-cert-manager
-  - fleet-pulsar-helmprep
+  - name: fleet-cert-manager
+  - name: fleet-pulsar-helmprep
 
 targetCustomizations:
 - name: dev
