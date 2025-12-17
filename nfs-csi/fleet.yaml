@@ -1,10 +1,9 @@
 defaultNamespace: nfs-csi
-helm:
-  chart: https://helm.familyhartley.com/csi-driver-nfs-4.12.1.tgz
 
 targetCustomizations:
 - name: dev
   helm:
+    chart: https://helm.familyhartley.com/csi-driver-nfs-4.12.1.tgz
     values:
       storageClass:
         create: true
@@ -22,6 +21,7 @@ targetCustomizations:
 
 - name: prod
   helm:
+    chart: https://helm.familyhartley.com/csi-driver-nfs-4.12.1.tgz
     values:
       storageClass:
         create: true

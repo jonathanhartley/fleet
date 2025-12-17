@@ -1,10 +1,9 @@
 defaultNamespace: cert-manager
-helm:
-  chart: https://charts.jetstack.io/charts/cert-manager-v1.19.1.tgz
 
 targetCustomizations:
 - name: dev
   helm:
+    chart: https://charts.jetstack.io/charts/cert-manager-v1.19.1.tgz
     values:
       global:
         imagePullSecrets: []
@@ -47,6 +46,7 @@ targetCustomizations:
 
 - name: prod
   helm:
+    chart: https://charts.jetstack.io/charts/cert-manager-v1.19.1.tgz
     values:
       global:
         imagePullSecrets: []

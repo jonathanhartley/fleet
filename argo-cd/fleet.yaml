@@ -1,13 +1,12 @@
 defaultNamespace: argocd
-helm:
-  repo: https://helm.familyhartley.com
-  chart: argo-cd
-  version: 9.1.0
-  releaseName: argocd
 
 targetCustomizations:
 - name: dev
   helm:
+    repo: https://helm.familyhartley.com
+    chart: argo-cd
+    version: 9.1.0
+    releaseName: argocd
     values:
       global:
         domain: argocd.familyhartley.com

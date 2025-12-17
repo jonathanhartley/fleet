@@ -1,0 +1,17 @@
+defaultNamespace: pulsar-fleet
+
+targetCustomizations:
+- name: dev
+  helm:
+    chart: https://helm.familyhartley.com/pulsar-helmprep-0.0.10.tgz
+    values:
+      image:
+        repository: docker.familyhartley.com/pulsar/pulsar-helmprep
+
+      fullnameOverride: "pulsar-1a-helmprep"
+
+      pulsarConfig:
+        clusterName: pulsar-1a
+  clusterSelector:
+    matchLabels:
+      env: dev
