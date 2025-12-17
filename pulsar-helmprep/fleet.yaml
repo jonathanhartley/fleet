@@ -7,6 +7,7 @@ targetCustomizations:
     values:
       image:
         repository: docker.familyhartley.com/pulsar/pulsar-helmprep
+        tag: 0.0.10
 
       fullnameOverride: "pulsar-1a-helmprep"
 
