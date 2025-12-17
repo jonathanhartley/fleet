@@ -1,4 +1,4 @@
-defaultNamespace: pulsar-fleet
+defaultNamespace: pulsar
 
 targetCustomizations:
 - name: dev
