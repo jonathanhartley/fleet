@@ -3,7 +3,10 @@ defaultNamespace: pulsar-fleet
 targetCustomizations:
 - name: dev
   helm:
-    chart: https://helm.familyhartley.com/pulsar-helmprep-0.0.10.tgz
+    repo: https://helm.familyhartley.com
+    chart: pulsar-helmprep
+    version: 0.0.10
+    releaseName: pulsar-helmprep
     values:
       image:
         repository: docker.familyhartley.com/pulsar/pulsar-helmprep
