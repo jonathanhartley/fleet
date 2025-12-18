@@ -4,13 +4,19 @@ targetCustomizations:
 - name: dev
   helm:
     chart: https://helm.familyhartley.com/csi-driver-nfs-4.12.1.tgz
+    valuesFrom:
+    - configMapKeyRef:
+        name: fleet-gitrepo-config-configmap
+        # default to namespace of bundle
+        namespace: fleet-local
+        key: label_values
     values:
       storageClass:
         create: true
         name: nfs
         parameters:
-          server: 192.168.3.250
-          share: /volume1/kubernetes
+          server: {{ .Values.storage.nfs.nfs_server }}
+          share: {{ .Values.stoage.nfs.nfs_path }}
         reclaimPolicy: Delete
         volumeBindingMode: Immediate
         mountOptions:
