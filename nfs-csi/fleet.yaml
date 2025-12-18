@@ -15,8 +15,8 @@ targetCustomizations:
         create: true
         name: nfs
         parameters:
-          server: ${ .Values.storage.nfs.nfs_server }
-          share: ${ .Values.storage.nfs.nfs_path }
+          server: ${ .label_values.storage.nfs.nfs_server }
+          share: ${ .label_values.storage.nfs.nfs_path }
         reclaimPolicy: Delete
         volumeBindingMode: Immediate
         mountOptions:
