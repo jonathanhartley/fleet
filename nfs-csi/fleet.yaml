@@ -10,7 +10,7 @@ targetCustomizations:
         name: nfs
         parameters:
           server: 192.168.3.250
-          share: "/volume1/kubernetes"
+          share: /volume1/kubernetes
         reclaimPolicy: Delete
         volumeBindingMode: Immediate
         mountOptions:
